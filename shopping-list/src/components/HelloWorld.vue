@@ -1,7 +1,11 @@
 <template>
   <div class="hello">
-    <div class="right">
+    <div class="left">
       <h1>{{ title }}</h1>
+
+      <form @submit.prevent="addItem">
+        <input class="item-input" type="text" placeholder="Add an Item" v-model="newItem" />
+      </form>
 
       <ul>
         <li v-for="(item, index) in itens" v-bind:key="index">
@@ -9,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <div class="left">
+    <div class="right">
       <stats />
     </div>
   </div>
@@ -18,7 +22,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Stats from '@/components/Stats.vue';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 @Component({
   components: {
@@ -29,9 +33,24 @@ import { mapState } from 'vuex';
         'title',
         'itens']),
   },
+  methods: {
+    ...mapMutations([
+        'ADD_ITEM',
+    ]),
+  },
 })
 export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
+  public newItem: string;
+  public ADD_ITEM: any;
+  constructor() {
+    super();
+    this.newItem = '';
+  }
+
+  public addItem() {
+      this.ADD_ITEM(this.newItem);
+      this.newItem = '';
+  }
 }
 </script>
 
@@ -72,6 +91,15 @@ export default class HelloWorld extends Vue {
   .right {
     grid-area: right;
     background-color: #E9E9E9;
+  }
+
+  input {
+    border: none;
+    padding: 20px;
+    width: calc(100% - 40px);
+    box-shadow: 0 5px 5px lightgrey;
+    margin-bottom: 50px;
+    outline: none;
   }
 
 </style>

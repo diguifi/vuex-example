@@ -18,7 +18,9 @@ export default new Vuex.Store({
       },
   },
   mutations: {
-
+      ADD_ITEM: (state, item) => {
+        state.itens.push(item);
+      },
   },
   actions: {
 

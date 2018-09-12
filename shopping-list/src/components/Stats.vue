@@ -16,7 +16,8 @@ import { mapGetters } from 'vuex';
   },
   computed: {
     ...mapGetters([
-        'counterItens']),
+        'counterItens',
+        ]),
   },
 })
 export default class Stats extends Vue {
