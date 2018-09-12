@@ -21,8 +21,13 @@ export default new Vuex.Store({
       ADD_ITEM: (state, item) => {
         state.itens.push(item);
       },
+      REMOVE_ITEM: (state, item) => {
+        state.itens.splice(item, 1);
+      },
   },
   actions: {
-
+    removeItem: (context, item) => {
+      context.commit('REMOVE_ITEM', item);
+    },
   },
 });

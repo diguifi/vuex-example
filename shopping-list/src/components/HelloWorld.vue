@@ -10,6 +10,7 @@
       <ul>
         <li v-for="(item, index) in itens" v-bind:key="index">
           {{ item }}
+          <button v-on:click="removeItens(index)" class="rm">Remove</button>
         </li>
       </ul>
     </div>
@@ -22,7 +23,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Stats from '@/components/Stats.vue';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 @Component({
   components: {
@@ -37,11 +38,16 @@ import { mapState, mapMutations } from 'vuex';
     ...mapMutations([
         'ADD_ITEM',
     ]),
+    ...mapActions([
+        'removeItem',
+    ]),
   },
 })
 export default class HelloWorld extends Vue {
   public newItem: string;
   public ADD_ITEM: any;
+  public removeItem: any;
+  
   constructor() {
     super();
     this.newItem = '';
@@ -50,6 +56,10 @@ export default class HelloWorld extends Vue {
   public addItem() {
       this.ADD_ITEM(this.newItem);
       this.newItem = '';
+  }
+
+  public removeItens(item: string) {
+      this.removeItem(item);
   }
 }
 </script>
@@ -100,6 +110,17 @@ export default class HelloWorld extends Vue {
     box-shadow: 0 5px 5px lightgrey;
     margin-bottom: 50px;
     outline: none;
+  }
+
+  .rm {
+    float: right;
+    text-transform: uppercase;
+    font-size: .8em;
+    background: #f9d0e3;
+    border: none;
+    padding: 5px;
+    color: #ff0076;
+    cursor: pointer;
   }
 
 </style>
