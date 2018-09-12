@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { promises } from 'fs';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-      title: 'My custom title',
+      title: 'Shopping list',
       itens: [
         'Milk',
         'Cereal',
@@ -24,10 +25,21 @@ export default new Vuex.Store({
       REMOVE_ITEM: (state, item) => {
         state.itens.splice(item, 1);
       },
+      REMOVE_ALL: (state) => {
+        state.itens = [];
+      },
   },
   actions: {
     removeItem: (context, item) => {
       context.commit('REMOVE_ITEM', item);
+    },
+    removeAll({commit}) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          commit('REMOVE_ALL');
+          resolve();
+        }, 1500);
+      });
     },
   },
 });
