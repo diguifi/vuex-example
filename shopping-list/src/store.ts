@@ -12,6 +12,11 @@ export default new Vuex.Store({
         'Plastic spoons',
       ],
   },
+  getters: {
+      counterItens: (state) => {
+        return state.itens.length;
+      },
+  },
   mutations: {
 
   },

@@ -1,23 +1,28 @@
 <template>
   <div class="hello">
-    <h1>{{ title }}</h1>
+    <div class="right">
+      <h1>{{ title }}</h1>
 
-    <ul>
-      <li v-for="(item, index) in itens" v-bind:key="index">
-        {{ item }}
-      </li>
-    </ul>
+      <ul>
+        <li v-for="(item, index) in itens" v-bind:key="index">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+    <div class="left">
+      <stats />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-
+import Stats from '@/components/Stats.vue';
 import { mapState } from 'vuex';
 
 @Component({
   components: {
-
+    Stats,
   },
   computed: {
     ...mapState([
