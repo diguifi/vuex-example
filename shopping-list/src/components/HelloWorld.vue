@@ -32,6 +32,7 @@ import { mapState, mapMutations, mapActions } from 'vuex';
   computed: {
     ...mapState([
         'title',
+        'msgRemoveAll',
         'itens']),
   },
   methods: {

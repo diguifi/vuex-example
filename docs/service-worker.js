@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js");
 
 importScripts(
-  "/vuex-example/precache-manifest.eff8cfeaf96f51205a428461a7b0faed.js"
+  "/vuex-example/precache-manifest.b63f3db70e07e7d000d7c903388bdb00.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "shopping-list"});

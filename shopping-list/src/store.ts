@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
       title: 'Shopping list',
+      msgRemoveAll: '',
       itens: [
         'Milk',
         'Cereal',
@@ -21,12 +22,17 @@ export default new Vuex.Store({
   mutations: {
       ADD_ITEM: (state, item) => {
         state.itens.push(item);
+
+        if (state.msgRemoveAll !== '') {
+          state.msgRemoveAll = '';
+        }
       },
       REMOVE_ITEM: (state, item) => {
         state.itens.splice(item, 1);
       },
       REMOVE_ALL: (state) => {
         state.itens = [];
+        state.msgRemoveAll = 'They have been removed';
       },
   },
   actions: {
